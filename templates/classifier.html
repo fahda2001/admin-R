@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+</head>
+
+<header>
+
+
+
+    <div id="header" style="border-radius: 20px;">
+
+        <nav class="topnav">
+            <a href="{{ url_for('options') }}">Home </a></li>
+            <a href="{{ url_for('hello') }}">Add story</a></li>
+            <a href="{{ url_for('edit') }}">Edit&Delete </a></li>
+            <a href="{{ url_for('logout') }}">Logout</a></li>
+
+    </div>
+
+</header>
+<style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+    .button2 {
+        background: #FF914D;
+        line-height: 20px;
+        padding: 15px 30px;
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 3px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        gap: 50px;
+        border: none;
+    outline: none;
+    }
+
+    .B{
+        background:#FF914D;
+        border: none;
+    outline: none;
+    height: 30px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;   
+    margin: 3px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        border: none;
+    outline: none;
+    }
+    .B:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        background-color: #de6f2a;
+    }
+
+    #content {
+        width: 750px;
+        max-width: 750px;
+        min-height: 325px;
+        background: rgba(20, 40, 40, .95);
+        margin: 75px auto;
+        border-radius: 15px;
+        overflow: hidden;
+        color: white;
+    }
+
+
+
+    .button2:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        background-color: #de6f2a;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+
+        font-size: 1em;
+        flex-wrap: wrap;
+        width: 100%;
+
+    }
+
+    nav.topnav a {
+
+        padding: 8px 25px;
+        text-decoration: none;
+        font-size: 17px;
+        border-radius: 20px;
+        color: aliceblue;
+
+
+    }
+
+    nav.topnav a:hover {
+        background: rgba(20, 40, 40, .95);
+    }
+
+    nav.topnav {
+        overflow: hidden;
+        background: rgba(20, 40, 40, .95);
+
+
+    }
+
+    #logo {
+        width: 1000px;
+        height: 1000px;
+        border-radius: 20px;
+    }
+
+
+    .navs {
+        list-style: none;
+    }
+
+    .navs li {
+        display: inline-table;
+    }
+
+    .navs li a {
+        text-align: center;
+        padding: 10px 30px;
+        text-decoration: none;
+        font-size: 20px;
+        background: rgba(20, 40, 40, .95);
+        border-radius: 20px;
+        color: aliceblue
+    }
+
+    #logo {
+        width: 1000px;
+        height: 1000px;
+        border-radius: 20px;
+    }
+   hr {
+    width: 86%;
+    margin-left: 0px;
+   }
+</style>
+
+<script>
+    function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+    }
+</script>
+
+<body style="background-image: url('https://wallpapercave.com/dwp2x/wp2151545.jpg');">
+    
+        
+    <table id="content" cellpadding="10" >
+
+
+        <tr>
+            
+            <td align="left">
+                
+             <img src="{{url_for('static', filename='logo1.png')}}" style="float: center; width:200px; height: 9100x; border-radius: 20px;
+              padding: 2px;
+                "   /><br> <br>
+
+             
+             <form id="form" name="myForm" method="post" action="{{url_for('save_Data')}}"> 
+                    
+                <h1 style=" text-align:center;">Add New story</h1> 
+                 <ul style="width: auto;height: auto ;margin-left: 75px;">
+                 <label for='title'>Title:</label><br>
+                 <input type="text" name="title" id='title' required placeholder="Enter title ..."
+                            style="width: 505px; padding: 12px; border: 1px solid #ccc; border-radius: 4px;"
+                            onblur="validateTitle()"><br>
+                    <span style="color: red" id="title_error_message"></span>
+                        <hr>
+                 <label for='story'>Content:</label><br>
+                 <textarea id="textarea" name='content' placeholder="Enter content here ....."
+                            style="width: 515px;height: 170px;padding: 12px ;box-sizing: border-box;border: 2px solid #ccc;border-radius: 4px;background-color: #f8f8f8;font-size: 16px;resize: none;">
+                        </textarea><br>
+
+                  <button id="classifyButton"class="B">Classify</button>  <span style="color: red" id="message1"></span><br> 
+                        <audio id="audio" src="{{url_for('static', filename='audio.mp3')}}"></audio>
+                        <!-- <p style="display:inline-block" >Moral: </p> <div size="50" style=" background-color:#FFD4B2 ; border: 1.3px solid #a3652a; width: 150px; height: 20px; display:inline-block"> 
+                           
+                            <span style="font-weight: bold; color:white "id="moral"> </span> </div> <br> -->
+                  <label for='moral'>The moral of this story is: </label>
+                            <input disabled type="text" name='moral' id='moral' value=""><br><br>
+                       
+                        <input id="cancelButton" type="submit" value="Disapprove and save in db" name="action" class="B">
+                        <hr>
+                        <label for="picture">Upload story picture:</label><br>
+                        <input type="file" name='picture' id="picture" id="picture" required /><br>
+                       <br>
+                    </ul>
+                    <input style="float: right;" class="button button2" type="submit" value="Add" name="action1"
+                    id="add">
+                    <button  class="button button2">  <a href="{{ url_for('options') }}" style="  color: white;text-decoration: none;"  class="previous">&laquo; </a> </button>
+                    <input class="button button2" type="reset" value="Reset">  
+                </form>
+                
+            </td>
+        </tr>
+    </table>
+    <!-- access database reference :https://firebase.google.com/docs/firestore/query-data/queries -->
+
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js'
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js"
+        import {
+            getFirestore, collection,
+            addDoc, getDocs, doc,
+            onSnapshot, query, serverTimestamp,
+            orderBy, deleteDoc, updateDoc, where
+        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJ5ufCbJFmYd7ZLPxpDzJ-bHn6_5up_tE",
+            authDomain: "read-me-a-story3.firebaseapp.com",
+            databaseURL: "https://read-me-a-story3-default-rtdb.firebaseio.com",
+            projectId: "read-me-a-story3",
+            storageBucket: "read-me-a-story3.appspot.com",
+            messagingSenderId: "345183958137",
+            appId: "1:345183958137:web:3d25a61eaa5ccb6e2ad0a8",
+            measurementId: "G-6F6BFMV1KW"
+        };
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app, "gs://read-me-a-story3.appspot.com");
+        const db = getFirestore(app);
+
+
+
+        console.log("script2");
+
+       // function to check if book has a duplicate in the database already or not by checking title name
+        window.validateTitle = async () => {
+            const title = document.getElementById("title").value
+            if (!title) return;
+        //    case insestive string, reference : https://masteringjs.io/tutorials/fundamentals/compare-strings-ignore-case
+            const titleSmall = title.toLowerCase();
+            const citiesRef = collection(db, "books");
+            const q = query(citiesRef, where("titleSmall", "==", titleSmall));
+
+            document.getElementById("title_error_message").innerHTML = "checking..."
+
+            const querySnapshot = await getDocs(q);
+
+            console.log("checking duplicate: ", querySnapshot.size);
+
+            if (querySnapshot.size !== 0) { //  duplicate found
+
+                document.getElementById("title_error_message").innerHTML = "Duplicate title"
+                document.getElementById("add").setAttribute("disabled", "true");
+                document.getElementById("add").style.backgroundColor = '#d1d1d1';
+                
+            } else {  // no duplicate found
+                document.getElementById("title_error_message").innerHTML = ""
+                document.getElementById("add").removeAttribute("disabled");
+                document.getElementById("add").style.backgroundColor = '#FF914D';
+            }
+        }
+        //  when admin disapproves story it will be saved in canceledStories collection
+        document.querySelector("#cancelButton").addEventListener("click", async (event) => {
+            event.preventDefault();
+            console.log("cancel");
+
+            // Upload & Retrieve Image on Firebase Storage reference: https://www.youtube.com/watch?v=ZH-PnY-JGBU&t=109s
+            let picture = document.getElementById("picture");
+
+            const storageRef = ref(storage, `${new Date().getTime()}-${picture.files[0]?.name}`);
+            let snapshot = await uploadBytes(storageRef, picture.files[0])
+
+            let url = await getDownloadURL(storageRef)
+
+            const form = new FormData();
+            form.append('titleSmall', document.getElementById("title").value.toLowerCase());
+            form.append('title', document.getElementById("title").value);
+            form.append('content', document.getElementById("textarea").value);
+            form.append('picture', url);
+            form.append('moral', document.querySelector("#moral").value);
+             
+            //  Save data in database after dissapprove story
+            axios.post("/Cancel_data", form).then(response => {
+                console.log(response.data);
+                alert("story saved Successfully");
+                document.getElementById("form").reset()
+                
+
+            }).catch(e => {
+                console.log(e);
+                alert("Failed ");
+            })
+
+        }, false);
+
+
+  
+        document.getElementById("form").addEventListener("submit", uploadFile);
+        async function uploadFile(event) {
+            event.preventDefault()
+            console.log("uploadFile");
+
+            // Upload & Retrieve Image on Firebase Storage reference: https://www.youtube.com/watch?v=ZH-PnY-JGBU&t=109s
+            let picture = document.getElementById("picture");
+
+            const storageRef = ref(storage, `${new Date().getTime()}-${picture.files[0]?.name}`);
+            let snapshot = await uploadBytes(storageRef, picture.files[0])
+
+            let url = await getDownloadURL(storageRef)
+
+            const form = new FormData();
+            form.append('titleSmall', document.getElementById("title").value.toLowerCase());
+            form.append('title', document.getElementById("title").value);
+            form.append('content', document.getElementById("textarea").value);
+            form.append('picture', url);
+            form.append('moral', document.querySelector("#moral").value);
+
+            //  Save data in database after adding new story
+            axios.post("/Save_data", form).then(response => {
+
+                console.log(response.data);
+                alert("story Added Successfully");
+                document.getElementById("form").reset()
+            }).catch(e => {
+                console.log(e);
+                alert("Failed ");
+            })
+
+
+        }
+
+
+        
+        // classifying the story
+        document.querySelector("#classifyButton").addEventListener("click", (event) => {
+            event.preventDefault();
+            const form = new FormData();
+            form.append('content', document.querySelector("#textarea").value);
+            document.getElementById("message1").innerHTML = "waiting ..."
+            axios.post("/Add_pred", form).then(response => {
+                audio.play();
+                console.log(response.data);
+                document.getElementById("message1").innerHTML = ""
+                document.querySelector("#moral").value = response.data
+            }).catch(e => {
+                console.log(e);
+                alert("Failed to add, check developer logs");
+            })
+        }, false);
+
+    </script>
+    
+</body>
+
+</html>
